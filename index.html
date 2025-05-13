@@ -14,17 +14,41 @@
             --main-bg: #181c24;
             --shadow: 0 8px 32px 0 rgba(31,38,135,0.17);
         }
+        
+        /* Fix for white background during scrolling */
+        html {
+            background-color: #181c24;
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+        
         body {
             background: linear-gradient(120deg, #181c24 0%, #23272f 100%);
+            background-attachment: fixed; /* This ensures the gradient stays fixed while scrolling */
             color: #fff;
             font-family: 'Montserrat', Arial, sans-serif;
             margin: 0;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
+        
+        /* Add a pseudo-element as a fallback background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #181c24; /* Solid color fallback */
+            z-index: -2;
+        }
+        
         .neon-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0;
+            z-index: -1;
             pointer-events: none;
         }
         .neon-circle {
@@ -181,10 +205,6 @@
             border: 1.5px solid rgba(255,255,255,0.10);
             animation: fadeInUp 1.2s cubic-bezier(.23,1.01,.32,1) both;
             will-change: transform, opacity;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(60px);}
-            to { opacity: 1; transform: translateY(0);}
         }
         .gallery-grid {
             display: grid;
@@ -881,7 +901,7 @@
                         <h2 class="university-name">Suleyman Demirel University (SDU)</h2>
                         <div class="education-details">
                             <p><i class="fas fa-graduation-cap"></i> <strong>Degree:</strong> Bachelor of Science in Information Systems</p>
-                            <p><i class="fas fa-calendar-alt"></i> <strong>Period:</strong> 2022 - Present (2nd Year)</p>
+                            <p><i class="fas fa-calendar-alt"></i> <strong>Period:</strong> 2023 - Present (2nd Year)</p>
                             <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Kaskelen, Almaty, Kazakhstan</p>
                         </div>
                     </div>
