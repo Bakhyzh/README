@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Bakhyt Zharkynbek</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --accent: #4ecdc4;
+            --accent2: #ff6b6b;
+            --glass-bg: rgba(30,34,45,0.75);
+            --main-bg: #181c24;
+            --shadow: 0 8px 32px 0 rgba(31,38,135,0.17);
+        }
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(120deg, #181c24 0%, #23272f 100%);
+            font-family: 'Montserrat', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .neon-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .neon-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.5;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+        .neon1 { width: 400px; height: 400px; background: #4ecdc4; top: 10%; left: 5%; animation-delay: 0s;}
+        .neon2 { width: 300px; height: 300px; background: #ff6b6b; bottom: 10%; right: 8%; animation-delay: 2s;}
+        .neon3 { width: 200px; height: 200px; background: #ffe66d; top: 60%; left: 60%; opacity: 0.3; animation-delay: 4s;}
+        @keyframes float {
+            0% { transform: translateY(0) scale(1);}
+            100% { transform: translateY(-30px) scale(1.08);}
+        }
+        .login-wrapper {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0; left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        .login-card {
+            background: var(--glass-bg);
+            border-radius: 32px;
+            box-shadow: var(--shadow), 0 0 0 2px #4ecdc4a0;
+            padding: 48px 36px 36px 36px;
+            width: 100%;
+            max-width: 370px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(18px);
+            border: 1.5px solid rgba(255,255,255,0.13);
+            animation: fadeInUp 1s cubic-bezier(.23,1.01,.32,1) both;
+            transition: box-shadow 0.3s;
+        }
+        .login-card:hover {
+            box-shadow: 0 8px 40px 0 #4ecdc4cc, 0 0 0 2.5px #ff6b6b80;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .login-card h2 {
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            background: linear-gradient(45deg, #4ecdc4, #ff6b6b, #ffe66d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-shadow: 0 2px 12px #23272f80;
+            animation: neonText 2s infinite alternate;
+        }
+        @keyframes neonText {
+            0% { text-shadow: 0 0 8px #4ecdc4, 0 2px 12px #23272f80;}
+            100% { text-shadow: 0 0 18px #ff6b6b, 0 2px 12px #23272f80;}
+        }
+        .login-card form {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .login-card .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .login-card .input-group i {
+            position: absolute;
+            left: 16px;
+            color: #4ecdc4;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            transition: color 0.2s;
+        }
+        .login-card input {
+            width: 100%;
+            padding: 14px 14px 14px 42px;
+            border-radius: 12px;
+            border: none;
+            background: #23272f;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px 0 rgba(31,38,135,0.07);
+            border: 1.5px solid transparent;
+        }
+        .login-card input:focus {
+            background: #23272f;
+            box-shadow: 0 0 0 2px #4ecdc4;
+            border: 1.5px solid #4ecdc4;
+        }
+        .login-card button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #4ecdc4 0%, #ff6b6b 100%);
+            color: #181c24;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, transform 0.15s;
+            box-shadow: 0 2px 8px 0 #4ecdc440;
+            letter-spacing: 1px;
+        }
+        .login-card button:hover {
+            background: linear-gradient(90deg, #ff6b6b 0%, #4ecdc4 100%);
+            color: #fff;
+            transform: translateY(-2px) scale(1.03);
+        }
+        .login-card .login-hint {
+            margin-top: 18px;
+            color: #b2f7ef;
+            font-size: 0.98rem;
+            opacity: 0.7;
+            letter-spacing: 0.5px;
+        }
+        .login-card .login-link {
+            margin-top: 15px;
+            color: #ffe66d;
+            font-size: 0.98rem;
+            letter-spacing: 0.5px;
+        }
+        .login-card .login-link a {
+            color: #4ecdc4;
+        }
+        .login-card .socials {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+        }
+        .login-card .socials a {
+            color: #4ecdc4;
+            font-size: 1.5rem;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .login-card .socials a:hover {
+            color: #ff6b6b;
+            transform: scale(1.18) rotate(-7deg);
+        }
+        .login-card .register-link {
+            margin-top: 15px;
+            color: #ffe66d;
+            font-size: 0.98rem;
+            letter-spacing: 0.5px;
+        }
+        .login-card .register-link a {
+            color: #4ecdc4;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .login-card .register-link a:hover {
+            color: #ff6b6b;
+            text-decoration: underline;
+        }
+        @media (max-width: 500px) {
+            .login-card { padding: 32px 8px 24px 8px; }
+            .login-card h2 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="neon-bg">
+        <div class="neon-circle neon1"></div>
+        <div class="neon-circle neon2"></div>
+        <div class="neon-circle neon3"></div>
+    </div>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h2>Welcome Back</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="login" placeholder="Username" required autocomplete="username">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
+                </div>
+                <button type="submit">Log In</button>
+            </form>
+            <div class="login-hint">
+                <i class="fas fa-info-circle"></i> Use any username and password
+            </div>
+            <div class="register-link">
+                Don't have an account? <a href="register.html">Register</a>
+            </div>
+            <div class="socials">
+                <a href="mailto:zharqynbekov.b@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.instagram.com/bakhyzh?igsh=Z2s5dGZobXo1M2Z0&utm_source=qr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/bakhyzh" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = "index.html";
+        });
+
+        // Lazy load images
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll('img');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const image = entry.target;
+                            image.src = image.dataset.src;
+                            imageObserver.unobserve(image);
+                        }
+                    });
+                });
+                
+                images.forEach(img => {
+                    if (img.src) {
+                        img.dataset.src = img.src;
+                        img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"; // tiny placeholder
+                        imageObserver.observe(img);
+                    }
+                });
+            }
+        });
+
+        // Add passive event listeners
+        document.addEventListener('touchstart', function() {}, {passive: true});
+        document.addEventListener('touchmove', function() {}, {passive: true});
+        document.addEventListener('wheel', function() {}, {passive: true});
+    </script>
+</body>
+</html> 
