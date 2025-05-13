@@ -1,0 +1,83 @@
+2025-05-13 22:35:08 - Начало отладки
+2025-05-13 22:35:08 - Метод запроса: POST
+2025-05-13 22:35:08 - Данные POST: Array
+(
+    [fullname] => bakhyt
+    [email] => wefr@werft.com
+    [username] => Bakhyt
+    [password] => bakobako
+    [confirmPassword] => bakobako
+)
+
+2025-05-13 22:35:08 - Данные GET: Array
+(
+)
+
+2025-05-13 22:35:08 - Заголовки: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 565
+    [sec-ch-ua-platform] => "macOS"
+    [User-Agent] => Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+    [sec-ch-ua] => "Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundaryYqwZ1NjvMPeASFvR
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/simple_register.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7
+)
+
+2025-05-13 22:35:08 - Получены данные: fullname=bakhyt, email=wefr@werft.com, username=Bakhyt
+2025-05-13 22:35:08 - Нет ошибок валидации, продолжаем регистрацию
+2025-05-13 22:35:08 - Нет ошибок, продолжаем регистрацию
+2025-05-13 22:35:08 - SQL запрос: INSERT INTO users (fullname, email, username, password) 
+                        VALUES ('bakhyt', 'wefr@werft.com', 'Bakhyt', '$2y$12$msaaJg54wIiDcbfrs1vFMOfpfQYs6kXBFD3X4RHSmQlrK0LtNDejC')
+2025-05-13 22:35:08 - Регистрация успешна
+2025-05-13 22:41:49 - Начало отладки
+2025-05-13 22:41:49 - Метод запроса: POST
+2025-05-13 22:41:49 - Данные POST: Array
+(
+    [fullname] => Bakhyt Zharkynbek
+    [email] => zharqynbekov.b@sdu.edu.kz
+    [username] => bakhyzh
+    [password] => bakobako
+    [confirmPassword] => bakobako
+)
+
+2025-05-13 22:41:49 - Данные GET: Array
+(
+)
+
+2025-05-13 22:41:49 - Заголовки: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 588
+    [sec-ch-ua-platform] => "macOS"
+    [User-Agent] => Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+    [sec-ch-ua] => "Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundarywRQ3KD9DrAIb7xBC
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/register.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7
+    [Cookie] => PHPSESSID=d5d46d8ac011218c653e66c971114d38
+)
+
+2025-05-13 22:41:49 - Получены данные: fullname=Bakhyt Zharkynbek, email=zharqynbekov.b@sdu.edu.kz, username=bakhyzh
+2025-05-13 22:41:49 - Нет ошибок валидации, продолжаем регистрацию
+2025-05-13 22:41:49 - Нет ошибок, продолжаем регистрацию
+2025-05-13 22:41:49 - SQL запрос: INSERT INTO users (fullname, email, username, password) 
+                        VALUES ('Bakhyt Zharkynbek', 'zharqynbekov.b@sdu.edu.kz', 'bakhyzh', '$2y$12$OXmXjEO3UtDh/QFP530EiuizQXQq/rSCOfcBWo6oPjIKdzWHZjPS6')
+2025-05-13 22:41:49 - Регистрация успешна

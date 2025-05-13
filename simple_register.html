@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .success {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Простая регистрация</h1>
+    
+    <form id="registerForm">
+        <div class="form-group">
+            <label for="fullname">Полное имя:</label>
+            <input type="text" id="fullname" name="fullname" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="confirmPassword">Подтвердите пароль:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+        </div>
+        
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    
+    <div id="result" class="error" style="display:none;"></div>
+    
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullname = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'none';
+            
+            if (password !== confirmPassword) {
+                resultDiv.textContent = 'Пароли не совпадают';
+                resultDiv.className = 'error';
+                resultDiv.style.display = 'block';
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('fullname', fullname);
+            formData.append('email', email);
+            formData.append('username', username);
+            formData.append('password', password);
+            formData.append('confirmPassword', confirmPassword);
+            
+            fetch('debug_register.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.text();
+            })
+            .then(text => {
+                console.log('Response text:', text);
+                try {
+                    return JSON.parse(text);
+                } catch (e) {
+                    throw new Error('Invalid JSON response: ' + text);
+                }
+            })
+            .then(data => {
+                console.log('Parsed data:', data);
+                
+                if (data.status === 'success') {
+                    resultDiv.textContent = data.message;
+                    resultDiv.className = 'success';
+                    resultDiv.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        window.location.href = data.redirect;
+                    }, 2000);
+                } else {
+                    resultDiv.textContent = data.message;
+                    resultDiv.className = 'error';
+                    resultDiv.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                resultDiv.textContent = 'Произошла ошибка: ' + error.message;
+                resultDiv.className = 'error';
+                resultDiv.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html> 

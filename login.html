@@ -203,6 +203,20 @@
             .login-card { padding: 32px 8px 24px 8px; }
             .login-card h2 { font-size: 1.4rem; }
         }
+        /* Добавим стили для сообщений об ошибках */
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+            text-align: left;
+            padding-left: 5px;
+        }
+        
+        .input-error {
+            border: 1.5px solid #ff6b6b !important;
+            box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.3) !important;
+        }
     </style>
 </head>
 <body>
@@ -216,17 +230,20 @@
             <h2>Welcome Back</h2>
             <form id="loginForm">
                 <div class="input-group">
-                    <i class="fas fa-user"></i>
-                    <input type="text" id="login" placeholder="Username" required autocomplete="username">
+                    <i class="fas fa-user-circle"></i>
+                    <input type="text" id="username" name="username" placeholder="Username" required autocomplete="username">
+                    <div class="error-message" id="username-error">Please enter a valid username</div>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
+                    <input type="password" id="password" name="password" placeholder="Password" required autocomplete="current-password">
+                    <div class="error-message" id="password-error">Please enter your password</div>
                 </div>
-                <button type="submit">Log In</button>
+                <div class="error-message" id="login-error" style="text-align: center; margin-top: 10px;"></div>
+                <button type="submit" id="login-button">Login</button>
             </form>
             <div class="login-hint">
-                <i class="fas fa-info-circle"></i> Use any username and password
+                Use your registered username and password
             </div>
             <div class="register-link">
                 Don't have an account? <a href="register.html">Register</a>
@@ -241,7 +258,117 @@
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            window.location.href = "index.html";
+            
+            // Reset error messages
+            resetErrors();
+            
+            // Get form data
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            
+            // Validate inputs
+            let hasErrors = false;
+            
+            if (!username) {
+                showError('username', 'Username is required');
+                hasErrors = true;
+            }
+            
+            if (!password) {
+                showError('password', 'Password is required');
+                hasErrors = true;
+            }
+            
+            if (hasErrors) {
+                return;
+            }
+            
+            // Disable button to prevent multiple submissions
+            const loginButton = document.getElementById('login-button');
+            loginButton.disabled = true;
+            loginButton.innerHTML = 'Logging in...';
+            
+            // Get form data
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('password', password);
+            
+            // Send AJAX request
+            fetch('debug_login.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Re-enable button
+                loginButton.disabled = false;
+                loginButton.innerHTML = 'Login';
+                
+                if (data.status === 'success') {
+                    // Successful login
+                    window.location.href = data.redirect;
+                } else {
+                    // Show error message
+                    const loginError = document.getElementById('login-error');
+                    loginError.textContent = data.message;
+                    loginError.style.display = 'block';
+                    
+                    // If user not registered, offer to redirect to registration
+                    if (data.redirect_to_register) {
+                        if (confirm('Account not found. Would you like to register now?')) {
+                            window.location.href = 'register.html';
+                        }
+                    }
+                }
+            })
+            .catch(error => {
+                // Re-enable button
+                loginButton.disabled = false;
+                loginButton.innerHTML = 'Login';
+                
+                // Show error message
+                const loginError = document.getElementById('login-error');
+                loginError.textContent = 'An error occurred. Please try again.';
+                loginError.style.display = 'block';
+                console.error('Error:', error);
+            });
+        });
+        
+        // Function to show error message
+        function showError(field, message) {
+            const input = document.getElementById(field);
+            const error = document.getElementById(field + '-error');
+            
+            input.classList.add('input-error');
+            error.textContent = message;
+            error.style.display = 'block';
+        }
+        
+        // Function to reset all errors
+        function resetErrors() {
+            const inputs = document.querySelectorAll('input');
+            const errors = document.querySelectorAll('.error-message');
+            
+            inputs.forEach(input => {
+                input.classList.remove('input-error');
+            });
+            
+            errors.forEach(error => {
+                error.style.display = 'none';
+            });
+        }
+        
+        // Add event listeners to remove error styling when user starts typing
+        document.getElementById('username').addEventListener('input', function() {
+            this.classList.remove('input-error');
+            document.getElementById('username-error').style.display = 'none';
+            document.getElementById('login-error').style.display = 'none';
+        });
+        
+        document.getElementById('password').addEventListener('input', function() {
+            this.classList.remove('input-error');
+            document.getElementById('password-error').style.display = 'none';
+            document.getElementById('login-error').style.display = 'none';
         });
 
         // Lazy load images

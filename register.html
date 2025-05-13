@@ -192,6 +192,20 @@
             .register-card { padding: 32px 8px 24px 8px; }
             .register-card h2 { font-size: 1.4rem; }
         }
+        /* Добавим стили для сообщений об ошибках */
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+            text-align: left;
+            padding-left: 5px;
+        }
+        
+        .input-error {
+            border: 1.5px solid #ff6b6b !important;
+            box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.3) !important;
+        }
     </style>
 </head>
 <body>
@@ -206,25 +220,31 @@
             <form id="registerForm">
                 <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" id="fullname" placeholder="Full Name" required>
+                    <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+                    <div class="error-message" id="fullname-error">Please enter your full name</div>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" id="email" placeholder="Email Address" required autocomplete="email">
+                    <input type="email" id="email" name="email" placeholder="Email Address" required autocomplete="email">
+                    <div class="error-message" id="email-error">Please enter a valid email address</div>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-user-circle"></i>
-                    <input type="text" id="username" placeholder="Username" required autocomplete="username">
+                    <input type="text" id="username" name="username" placeholder="Username" required autocomplete="username">
+                    <div class="error-message" id="username-error">Please enter a username (3-20 characters)</div>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" id="password" placeholder="Password" required autocomplete="new-password">
+                    <input type="password" id="password" name="password" placeholder="Password" required autocomplete="new-password">
+                    <div class="error-message" id="password-error">Password must be at least 6 characters</div>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required autocomplete="new-password">
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required autocomplete="new-password">
+                    <div class="error-message" id="confirmPassword-error">Passwords don't match</div>
                 </div>
-                <button type="submit">Register</button>
+                <div class="error-message" id="register-error" style="text-align: center; margin-top: 10px;"></div>
+                <button type="submit" id="register-button">Register</button>
             </form>
             <div class="login-link">
                 Already have an account? <a href="login.html">Log In</a>
@@ -240,17 +260,140 @@
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Simple validation for password matching
+            // Reset error messages
+            resetErrors();
+            
+            // Get form data
+            const fullname = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
             
+            // Validate inputs
+            let hasErrors = false;
+            
+            if (!fullname) {
+                showError('fullname', 'Full name is required');
+                hasErrors = true;
+            }
+            
+            if (!email || !isValidEmail(email)) {
+                showError('email', 'Please enter a valid email address');
+                hasErrors = true;
+            }
+            
+            if (!username || username.length < 3 || username.length > 20) {
+                showError('username', 'Username must be between 3-20 characters');
+                hasErrors = true;
+            }
+            
+            if (!password || password.length < 6) {
+                showError('password', 'Password must be at least 6 characters');
+                hasErrors = true;
+            }
+            
             if (password !== confirmPassword) {
-                alert("Passwords don't match!");
+                showError('confirmPassword', 'Passwords don\'t match');
+                hasErrors = true;
+            }
+            
+            if (hasErrors) {
                 return;
             }
             
-            // Registration successful, redirect to index
-            window.location.href = "index.html";
+            // Disable button to prevent multiple submissions
+            const registerButton = document.getElementById('register-button');
+            registerButton.disabled = true;
+            registerButton.innerHTML = 'Registering...';
+            
+            // Get form data
+            const formData = new FormData();
+            formData.append('fullname', fullname);
+            formData.append('email', email);
+            formData.append('username', username);
+            formData.append('password', password);
+            formData.append('confirmPassword', confirmPassword);
+            
+            // Send AJAX request
+            fetch('debug_register.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Re-enable button
+                registerButton.disabled = false;
+                registerButton.innerHTML = 'Register';
+                
+                if (data.status === 'success') {
+                    // Successful registration
+                    alert(data.message);
+                    window.location.href = data.redirect;
+                } else {
+                    // Show error message
+                    const registerError = document.getElementById('register-error');
+                    registerError.textContent = data.message;
+                    registerError.style.display = 'block';
+                    
+                    // If user already exists, offer to redirect to login
+                    if (data.login_instead) {
+                        if (confirm('Account already exists. Would you like to login instead?')) {
+                            window.location.href = 'login.html';
+                        }
+                    }
+                }
+            })
+            .catch(error => {
+                // Re-enable button
+                registerButton.disabled = false;
+                registerButton.innerHTML = 'Register';
+                
+                // Show error message
+                const registerError = document.getElementById('register-error');
+                registerError.textContent = 'An error occurred. Please try again.';
+                registerError.style.display = 'block';
+                console.error('Error:', error);
+            });
+        });
+        
+        // Function to validate email format
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Function to show error message
+        function showError(field, message) {
+            const input = document.getElementById(field);
+            const error = document.getElementById(field + '-error');
+            
+            input.classList.add('input-error');
+            error.textContent = message;
+            error.style.display = 'block';
+        }
+        
+        // Function to reset all errors
+        function resetErrors() {
+            const inputs = document.querySelectorAll('input');
+            const errors = document.querySelectorAll('.error-message');
+            
+            inputs.forEach(input => {
+                input.classList.remove('input-error');
+            });
+            
+            errors.forEach(error => {
+                error.style.display = 'none';
+            });
+        }
+        
+        // Add event listeners to remove error styling when user starts typing
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.remove('input-error');
+                document.getElementById(this.id + '-error').style.display = 'none';
+                document.getElementById('register-error').style.display = 'none';
+            });
         });
 
         // Lazy load images
