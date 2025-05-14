@@ -19,6 +19,7 @@ import schemas
 from sqlalchemy.orm import Session
 import utils
 import config
+from ai_assistant import assistant
 
 # Initialize FastAPI app
 app = FastAPI(title="Portfolio API")
@@ -457,6 +458,30 @@ async def health_check():
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             content={"status": "unhealthy", "message": str(e)}
         )
+
+# AI Assistant chat endpoint
+@app.post("/ai/chat")
+async def ai_chat(request: Request):
+    try:
+        data = await request.json()
+        user_query = data.get("message", "")
+        history = data.get("history", [])
+        
+        # Clean up the history to ensure it follows OpenAI format
+        conversation_history = []
+        if history and len(history) > 0:
+            for msg in history:
+                if isinstance(msg, dict) and 'role' in msg and 'content' in msg:
+                    if msg['role'] in ['user', 'assistant', 'system']:
+                        conversation_history.append(msg)
+        
+        # Use the assistant with conversation history
+        response = await assistant.get_response(user_query, conversation_history)
+        
+        return {"response": response}
+    except Exception as e:
+        logger.error(f"AI chat error: {str(e)}")
+        return {"response": f"Sorry, I encountered an error: {str(e)}"}
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True) 

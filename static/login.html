@@ -266,39 +266,39 @@
             }
 
             $('#loginForm').submit(function(e) {
-                e.preventDefault();
-                
+            e.preventDefault();
+            
                 // Hide error messages
                 $('.error-message').hide();
-                
+            
                 let username = $('#username').val();
                 let password = $('#password').val();
                 
                 // Remove any previous error styling
                 $('#username, #password').removeClass('input-error');
-                
+            
                 // Simple validation
                 let isValid = true;
-                
-                if (!username) {
+            
+            if (!username) {
                     $('#username').addClass('input-error');
                     $('#username-error').show();
                     isValid = false;
-                }
-                
-                if (!password) {
+            }
+            
+            if (!password) {
                     $('#password').addClass('input-error');
                     $('#password-error').show();
                     isValid = false;
-                }
-                
+            }
+            
                 if (!isValid) {
                     return false;
-                }
-                
+            }
+            
                 // Disable button and show loading state
                 $('#login-button').prop('disabled', true).text('Logging in...');
-                
+            
                 // Send data to server
                 $.ajax({
                     url: '/debug_login.php',
@@ -311,13 +311,18 @@
                         console.log('Login response:', response);
                         
                         if (response.status === 'success') {
-                            // Store token in localStorage
+                            // Store token and username in localStorage
                             if (response.token) {
                                 localStorage.setItem('authToken', response.token);
+                                localStorage.setItem('username', username);
                             }
                             
-                            // Redirect to profile page
-                            window.location.href = 'profile.html';
+                            // Redirect to the page specified in the response or fallback to profile page
+                            if (response.redirect) {
+                                window.location.href = response.redirect;
+                            } else {
+                                window.location.href = 'profile.html';
+                            }
                         } else {
                             // Show error message
                             $('#login-error').text(response.message || 'Login failed. Please try again.').show();

@@ -832,17 +832,19 @@
     </div>
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="logo">BZ Portfolio</a>
+            <a href="index.html" class="logo">bakhyzh web</a>
             <div class="nav-links" id="navLinks">
                 <a href="index.html" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="profile.html" class="nav-link outlined">Profile</a>
-                <div id="auth-buttons">
+                <a href="chat.html" class="nav-link filled" style="background: #ff6b6b; margin-right: 10px;">AI Assistant</a>
+                <div id="auth-buttons" style="display: none;">
                     <a href="login.html" class="nav-link filled">Sign In</a>
                     <a href="register.html" class="nav-link filled" style="background: #4ecdc4;">Register</a>
                 </div>
-                <a href="#" id="logout-button" class="nav-link filled" style="display: none;">Sign Out</a>
+                <span id="username-display" class="nav-link" style="margin-right: 10px;"></span>
+                <a href="javascript:void(0)" id="logout-button" class="nav-link filled" style="background: #ff6b6b;">Sign Out</a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -855,7 +857,7 @@
     <main id="hero">
         <div class="container">
             <div class="hero-content glass">
-                <div class="hero-badge">Portfolio</div>
+                <div class="hero-badge">BZ</div>
                 <h1 class="hero-title">Bakhyt Zharkynbek</h1>
                 <p class="hero-subtitle">Information Systems Student at SDU</p>
                 <div class="hero-divider"></div>
@@ -1006,30 +1008,39 @@
     </footer>
 
     <script>
-        $(document).ready(function() {
+        document.addEventListener('DOMContentLoaded', function() {
             // Check authentication status
             const token = localStorage.getItem('authToken');
+            const username = localStorage.getItem('username');
             
-            if (token) {
-                // User is logged in
-                $('#auth-buttons').hide();
-                $('#logout-button').show();
+            // Show actual username from local storage
+            const usernameDisplay = document.getElementById('username-display');
+            if (username) {
+                usernameDisplay.textContent = username;
             } else {
-                // User is logged out
-                $('#auth-buttons').show();
-                $('#logout-button').hide();
+                // If no username in storage, show a default
+                usernameDisplay.textContent = 'User';
             }
             
-            // Add logout functionality
-            $('#logout-button').click(function(e) {
+            // Always hide auth buttons, always show username and logout
+            document.getElementById('auth-buttons').style.display = 'none';
+            usernameDisplay.style.display = 'inline-block';
+            document.getElementById('logout-button').style.display = 'inline-block';
+            
+            // Completely rewritten logout function
+            document.getElementById('logout-button').addEventListener('click', function(e) {
                 e.preventDefault();
+                // Clear auth data
                 localStorage.removeItem('authToken');
-                window.location.reload();
+                localStorage.removeItem('username');
+                // Redirect to profile page
+                window.location.href = 'profile.html';
+                return false;
             });
             
             // Mobile menu toggle
-            $('#hamburger').click(function() {
-                $('#navLinks').toggleClass('active');
+            document.getElementById('hamburger').addEventListener('click', function() {
+                document.getElementById('navLinks').classList.toggle('active');
             });
         });
     </script>

@@ -42,17 +42,32 @@ pip install -r requirements.txt
   - Database: portfolio_db
 - If MySQL is not available, it will fall back to SQLite automatically
 
-5. Create environment variables (optional):
+5. Create environment variables:
 Create a `.env` file in the project root with the following variables:
 ```
+# Database Configuration
 DB_HOST=localhost
 DB_USER=root
-DB_PASS=
+DB_PASS=your_database_password
 DB_NAME=portfolio_db
+
+# JWT Configuration
 SECRET_KEY=your-secret-key-change-this-in-production
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+
+# OpenAI Configuration
+OPENAI_API_KEY=your_openai_api_key_here
+MODEL_NAME=gpt-3.5-turbo
+MAX_TOKENS=1000
+TEMPERATURE=0.7
+
+# Application Settings
 DEBUG=true
 PORT=8000
 ```
+
+**Important:** The `.env` file contains sensitive information and should never be committed to version control. Make sure it's included in your `.gitignore` file.
 
 ## Running the Application
 

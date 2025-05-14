@@ -267,11 +267,11 @@
             }
 
             $('#registerForm').submit(function(e) {
-                e.preventDefault();
-                
+            e.preventDefault();
+            
                 // Hide error messages
                 $('.error-message').hide();
-                
+            
                 let fullname = $('#fullname').val();
                 let email = $('#email').val();
                 let username = $('#username').val();
@@ -280,47 +280,47 @@
                 
                 // Remove any previous error styling
                 $('#fullname, #email, #username, #password, #confirmPassword').removeClass('input-error');
-                
+            
                 // Simple validation
                 let isValid = true;
-                
-                if (!fullname) {
+            
+            if (!fullname) {
                     $('#fullname').addClass('input-error');
                     $('#fullname-error').show();
                     isValid = false;
-                }
-                
-                if (!email || !isValidEmail(email)) {
+            }
+            
+            if (!email || !isValidEmail(email)) {
                     $('#email').addClass('input-error');
                     $('#email-error').show();
                     isValid = false;
-                }
-                
+            }
+            
                 if (!username || username.length < 3) {
                     $('#username').addClass('input-error');
                     $('#username-error').show();
                     isValid = false;
-                }
-                
-                if (!password || password.length < 6) {
+            }
+            
+            if (!password || password.length < 6) {
                     $('#password').addClass('input-error');
                     $('#password-error').show();
                     isValid = false;
-                }
-                
-                if (password !== confirmPassword) {
+            }
+            
+            if (password !== confirmPassword) {
                     $('#confirmPassword').addClass('input-error');
                     $('#confirmPassword-error').show();
                     isValid = false;
-                }
-                
+            }
+            
                 if (!isValid) {
                     return false;
-                }
-                
+            }
+            
                 // Disable button and show loading state
                 $('#register-button').prop('disabled', true).text('Registering...');
-                
+            
                 // Send data to server
                 $.ajax({
                     url: '/debug_register.php',
@@ -334,7 +334,7 @@
                     },
                     success: function(response) {
                         console.log('Register response:', response);
-                        
+                
                         if (response.status === 'success') {
                             // Store token in localStorage if provided
                             if (response.token) {
@@ -343,8 +343,8 @@
                             
                             // Redirect to profile page
                             window.location.href = 'profile.html';
-                        } else {
-                            // Show error message
+                } else {
+                    // Show error message
                             $('#register-error').text(response.message || 'Registration failed. Please try again.').show();
                             $('#register-button').prop('disabled', false).text('Register');
                         }
@@ -357,13 +357,13 @@
                 });
                 
                 return false;
-            });
-            
+        });
+        
             // Email validation helper
-            function isValidEmail(email) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return emailRegex.test(email);
-            }
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
         });
 
         // Lazy load images

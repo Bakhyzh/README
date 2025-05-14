@@ -779,19 +779,19 @@
           return;
       }
       
-      // Mobile menu toggle
+    // Mobile menu toggle
       $('#hamburger').click(function() {
           $('#navLinks').toggleClass('active');
-      });
-      
+    });
+    
       // Add logout functionality
       $('#logout-button').click(function(e) {
           e.preventDefault();
           localStorage.removeItem('authToken');
           window.location.href = 'login.html';
-      });
-      
-      // Tab functionality
+    });
+    
+    // Tab functionality
       $('.tab').click(function() {
           $('.tab').removeClass('active');
           $(this).addClass('active');

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Assistant Chat</title>
+  <style>
+    #chat { max-width: 400px; margin: auto; border: 1px solid #ccc; padding: 10px; }
+    #messages { height: 300px; overflow-y: scroll; border: 1px solid #eee; margin-bottom: 10px; }
+    .msg { margin: 5px 0; }
+    .user { color: blue; }
+    .ai { color: green; }
+  </style>
+</head>
+<body>
+  <div id="chat">
+    <div id="messages"></div>
+    <input id="input" type="text" placeholder="Ask me anything..." style="width:80%">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+  <script>
+    async function sendMessage() {
+      const input = document.getElementById('input');
+      const msg = input.value;
+      if (!msg) return;
+      addMessage('user', msg);
+      input.value = '';
+      const res = await fetch('http://localhost:8000/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+      });
+      const data = await res.json();
+      addMessage('ai', data.response);
+    }
+    function addMessage(role, text) {
+      const messages = document.getElementById('messages');
+      const div = document.createElement('div');
+      div.className = 'msg ' + role;
+      div.textContent = (role === 'user' ? 'You: ' : 'AI: ') + text;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+  </script>
+</body>
+</html>

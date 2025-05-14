@@ -127,3 +127,236 @@
 2025-05-14 14:37:00,660 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
 2025-05-14 14:37:07,361 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
 2025-05-14 14:37:08,502 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 14:59:12,150 - INFO - Login attempt: username=admin
+2025-05-14 14:59:12,450 - INFO - User admin authenticated successfully
+2025-05-14 14:59:12,453 - INFO - User admin is an admin
+2025-05-14 15:37:36,925 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:39:34,233 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:39:35,849 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:39:38,588 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:39:41,219 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:39:51,183 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:45:53,148 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:54:38,385 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:54:38,385 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:54:50,755 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:54:50,755 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:54:52,480 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:54:52,482 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:55:01,952 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:55:01,952 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:55:03,186 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:55:03,186 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:55:19,249 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 15:55:19,249 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 16:03:34,728 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 16:05:49,761 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 16:10:40,643 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 16:12:05,987 - INFO - Using SQLite database
+2025-05-14 16:12:05,987 - INFO - Using SQLite database
+2025-05-14 16:12:05,988 - INFO - Using SQLite database
+2025-05-14 16:12:05,988 - INFO - Using SQLite database
+2025-05-14 16:12:05,989 - INFO - Using SQLite database
+2025-05-14 16:12:06,824 - INFO - Admin user created successfully
+2025-05-14 16:12:06,887 - ERROR - Error creating admin user: (sqlite3.IntegrityError) UNIQUE constraint failed: users.username
+[SQL: INSERT INTO users (fullname, email, username, password, is_admin) VALUES (?, ?, ?, ?, ?) RETURNING id, created_at]
+[parameters: ('Admin User', 'admin@example.com', 'admin', '$2b$12$YBX6zN0P1Xq/AcnPayyJqOZjzL1Y6c2Fbh97Wp/BR7QRAgYr6Mlpq', 1)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-14 16:12:06,898 - ERROR - Error creating admin user: (sqlite3.IntegrityError) UNIQUE constraint failed: users.username
+[SQL: INSERT INTO users (fullname, email, username, password, is_admin) VALUES (?, ?, ?, ?, ?) RETURNING id, created_at]
+[parameters: ('Admin User', 'admin@example.com', 'admin', '$2b$12$fAAANC3HRZn82h4.Syfzwe2xVLb1nGOvNQiylFDITHh8pumi1uroG', 1)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-14 16:12:06,911 - ERROR - Error creating admin user: (sqlite3.IntegrityError) UNIQUE constraint failed: users.username
+[SQL: INSERT INTO users (fullname, email, username, password, is_admin) VALUES (?, ?, ?, ?, ?) RETURNING id, created_at]
+[parameters: ('Admin User', 'admin@example.com', 'admin', '$2b$12$4C1JnbVe7fgNHAdzFFGf5.WkYtMXfhp8VB6GI7rQXsPwp23GT33Rm', 1)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-14 16:12:06,913 - ERROR - Error creating admin user: (sqlite3.IntegrityError) UNIQUE constraint failed: users.username
+[SQL: INSERT INTO users (fullname, email, username, password, is_admin) VALUES (?, ?, ?, ?, ?) RETURNING id, created_at]
+[parameters: ('Admin User', 'admin@example.com', 'admin', '$2b$12$EldXSAX4IUOeU4aPYYGVJO6q11MRHY6oRFapECgTDxzKfTifXCZh6', 1)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-05-14 16:12:56,055 - ERROR - Error getting AI response: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-05-14 16:13:01,834 - ERROR - Error getting AI response: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-05-14 16:13:03,336 - ERROR - Error getting AI response: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-05-14 16:13:16,435 - INFO - Login attempt: username=admin
+2025-05-14 16:13:16,780 - INFO - User admin authenticated successfully
+2025-05-14 16:13:16,789 - INFO - User admin is an admin
+2025-05-14 16:14:53,482 - INFO - Login attempt: username=admin
+2025-05-14 16:14:53,823 - INFO - User admin authenticated successfully
+2025-05-14 16:14:53,834 - INFO - User admin is an admin
+2025-05-14 16:15:34,372 - INFO - Login attempt: username=admin
+2025-05-14 16:15:34,717 - INFO - User admin authenticated successfully
+2025-05-14 16:15:34,718 - INFO - User admin is an admin
+2025-05-14 16:17:58,213 - INFO - Login attempt: username=admin
+2025-05-14 16:17:58,551 - INFO - User admin authenticated successfully
+2025-05-14 16:17:58,552 - INFO - User admin is an admin
+2025-05-14 16:18:18,430 - INFO - Registration attempt: fullname=Bakhyt Zharkynbek, email=zharqynbekov.b@gmail.com, username=bakhyzh
+2025-05-14 16:18:18,771 - INFO - Registration successful for bakhyzh
+2025-05-14 16:24:29,937 - INFO - Using SQLite database
+2025-05-14 16:24:30,087 - INFO - Using SQLite database
+2025-05-14 16:24:30,225 - INFO - Using SQLite database
+2025-05-14 16:24:30,265 - INFO - Using SQLite database
+2025-05-14 16:24:30,287 - INFO - Using SQLite database
+2025-05-14 16:24:32,430 - INFO - Using SQLite database
+2025-05-14 16:24:32,844 - INFO - Using SQLite database
+2025-05-14 16:24:32,896 - INFO - Using SQLite database
+2025-05-14 16:24:32,898 - INFO - Using SQLite database
+2025-05-14 16:24:33,053 - INFO - Using SQLite database
+2025-05-14 16:24:35,149 - INFO - Using SQLite database
+2025-05-14 16:24:35,181 - INFO - Using SQLite database
+2025-05-14 16:24:35,369 - INFO - Using SQLite database
+2025-05-14 16:24:35,381 - INFO - Using SQLite database
+2025-05-14 16:24:35,384 - INFO - Using SQLite database
+2025-05-14 16:24:58,109 - ERROR - Error getting AI response: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-05-14 16:26:39,356 - INFO - Using SQLite database
+2025-05-14 16:26:40,455 - INFO - Using SQLite database
+2025-05-14 16:26:40,472 - INFO - Using SQLite database
+2025-05-14 16:26:40,486 - INFO - Using SQLite database
+2025-05-14 16:26:40,492 - INFO - Using SQLite database
+2025-05-14 16:26:40,508 - INFO - Using SQLite database
+2025-05-14 16:26:46,628 - INFO - Using SQLite database
+2025-05-14 16:26:46,703 - INFO - Using SQLite database
+2025-05-14 16:26:46,756 - INFO - Using SQLite database
+2025-05-14 16:26:46,771 - INFO - Using SQLite database
+2025-05-14 16:26:46,801 - INFO - Using SQLite database
+2025-05-14 16:26:47,867 - INFO - Using SQLite database
+2025-05-14 16:26:48,117 - INFO - Using SQLite database
+2025-05-14 16:26:48,155 - INFO - Using SQLite database
+2025-05-14 16:26:48,250 - INFO - Using SQLite database
+2025-05-14 16:26:48,294 - INFO - Using SQLite database
+2025-05-14 16:31:48,276 - INFO - Using SQLite database
+2025-05-14 16:31:48,355 - INFO - Using SQLite database
+2025-05-14 16:31:48,731 - INFO - Using SQLite database
+2025-05-14 16:31:48,826 - INFO - Using SQLite database
+2025-05-14 16:31:48,843 - INFO - Using SQLite database
+2025-05-14 16:32:00,504 - INFO - Using SQLite database
+2025-05-14 16:32:00,588 - INFO - Using SQLite database
+2025-05-14 16:32:00,913 - INFO - Using SQLite database
+2025-05-14 16:32:01,176 - INFO - Using SQLite database
+2025-05-14 16:32:01,207 - INFO - Using SQLite database
+2025-05-14 16:36:52,109 - INFO - Using SQLite database
+2025-05-14 16:36:52,417 - INFO - Using SQLite database
+2025-05-14 16:36:52,422 - INFO - Using SQLite database
+2025-05-14 16:36:52,934 - INFO - Using SQLite database
+2025-05-14 16:36:52,946 - INFO - Using SQLite database
+2025-05-14 16:36:54,500 - INFO - Using SQLite database
+2025-05-14 16:36:55,231 - INFO - Using SQLite database
+2025-05-14 16:36:55,234 - INFO - Using SQLite database
+2025-05-14 16:36:55,357 - INFO - Using SQLite database
+2025-05-14 16:36:55,371 - INFO - Using SQLite database
+2025-05-14 16:37:00,940 - INFO - Using SQLite database
+2025-05-14 16:37:01,085 - INFO - Using SQLite database
+2025-05-14 16:37:01,170 - INFO - Using SQLite database
+2025-05-14 16:37:01,662 - INFO - Using SQLite database
+2025-05-14 16:37:01,666 - INFO - Using SQLite database
+2025-05-14 16:37:04,105 - INFO - Using SQLite database
+2025-05-14 16:37:04,548 - INFO - Using SQLite database
+2025-05-14 16:37:04,595 - INFO - Using SQLite database
+2025-05-14 16:37:04,758 - INFO - Using SQLite database
+2025-05-14 16:37:04,780 - INFO - Using SQLite database
+2025-05-14 16:37:09,553 - ERROR - Error getting AI response: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-05-14 16:37:16,753 - ERROR - Error getting AI response: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+2025-05-14 16:39:20,187 - INFO - Using SQLite database
+2025-05-14 16:39:20,358 - INFO - Using SQLite database
+2025-05-14 16:39:20,862 - INFO - Using SQLite database
+2025-05-14 16:39:21,726 - INFO - Using SQLite database
+2025-05-14 16:39:21,743 - INFO - Using SQLite database
+2025-05-14 16:39:22,077 - INFO - Using SQLite database
+2025-05-14 16:39:22,336 - INFO - Using SQLite database
+2025-05-14 16:39:22,444 - INFO - Using SQLite database
+2025-05-14 16:39:40,189 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-14 16:39:52,585 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-14 16:42:05,339 - INFO - Using SQLite database
+2025-05-14 16:42:05,542 - INFO - Using SQLite database
+2025-05-14 16:42:05,556 - INFO - Using SQLite database
+2025-05-14 16:42:05,575 - INFO - Using SQLite database
+2025-05-14 16:42:05,621 - INFO - Using SQLite database
+2025-05-14 16:42:08,311 - INFO - Using SQLite database
+2025-05-14 16:42:09,051 - INFO - Using SQLite database
+2025-05-14 16:42:09,100 - INFO - Using SQLite database
+2025-05-14 16:42:09,105 - INFO - Using SQLite database
+2025-05-14 16:42:09,161 - INFO - Using SQLite database
+2025-05-14 16:42:29,828 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-14 16:47:40,723 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-14 16:50:12,416 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-14 16:50:36,274 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-14 17:04:02,509 - INFO - Login attempt: username=bakhyzh
+2025-05-14 17:04:02,853 - INFO - User bakhyzh authenticated successfully
+2025-05-14 17:04:02,876 - INFO - User bakhyzh is not an admin
+2025-05-14 17:04:34,608 - INFO - Login attempt: username=admin
+2025-05-14 17:04:35,044 - INFO - User admin authenticated successfully
+2025-05-14 17:04:35,045 - INFO - User admin is an admin
+2025-05-14 17:14:11,969 - INFO - Login attempt: username=bakhyzh
+2025-05-14 17:14:12,513 - INFO - User bakhyzh authenticated successfully
+2025-05-14 17:14:12,522 - INFO - User bakhyzh is not an admin
+2025-05-14 17:17:13,383 - INFO - Login attempt: username=bakhyzh
+2025-05-14 17:17:13,829 - INFO - User bakhyzh authenticated successfully
+2025-05-14 17:17:13,830 - INFO - User bakhyzh is not an admin
+2025-05-14 17:22:39,951 - INFO - Login attempt: username=bakhyzh
+2025-05-14 17:22:40,406 - INFO - User bakhyzh authenticated successfully
+2025-05-14 17:22:40,406 - INFO - User bakhyzh is not an admin
+2025-05-14 17:24:35,333 - INFO - Login attempt: username=bakhyzh
+2025-05-14 17:24:35,789 - INFO - User bakhyzh authenticated successfully
+2025-05-14 17:24:35,790 - INFO - User bakhyzh is not an admin
+2025-05-14 17:25:07,412 - INFO - Login attempt: username=bakhyzh
+2025-05-14 17:25:07,873 - INFO - User bakhyzh authenticated successfully
+2025-05-14 17:25:07,874 - INFO - User bakhyzh is not an admin
+2025-05-14 17:25:34,011 - INFO - Login attempt: username=bakhyzh
+2025-05-14 17:25:34,459 - INFO - User bakhyzh authenticated successfully
+2025-05-14 17:25:34,460 - INFO - User bakhyzh is not an admin
+2025-05-14 17:27:15,307 - INFO - Login attempt: username=admin
+2025-05-14 17:27:15,761 - INFO - User admin authenticated successfully
+2025-05-14 17:27:15,762 - INFO - User admin is an admin
