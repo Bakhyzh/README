@@ -2,6 +2,7 @@ from openai import OpenAI
 import logging
 from typing import List
 import os
+import httpx
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -16,18 +17,30 @@ class AIAssistant:
         api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
             logger.error("OpenAI API key not found in environment variables")
+            self.client = None
+            return
         
-        # Initialize OpenAI client - removed any proxy settings
-        self.client = OpenAI(api_key=api_key)
-        
-        # Set default model (can be configured in .env)
-        self.model = os.getenv("MODEL_NAME", "gpt-3.5-turbo")
-        
-        # System message to define AI assistant behavior
-        self.system_message = {
-            "role": "system", 
-            "content": "You are a helpful AI assistant for a portfolio website. Provide concise, informative answers about resume building, career advice, technology, and related topics."
-        }
+        try:
+            # Create a clean httpx client without any proxy settings
+            http_client = httpx.Client(base_url="https://api.openai.com")
+            
+            # Initialize OpenAI client with the custom http client
+            self.client = OpenAI(
+                api_key=api_key,
+                http_client=http_client
+            )
+            
+            # Set default model (can be configured in .env)
+            self.model = os.getenv("MODEL_NAME", "gpt-3.5-turbo")
+            
+            # System message to define AI assistant behavior
+            self.system_message = {
+                "role": "system", 
+                "content": "You are a helpful AI assistant for a portfolio website. Provide concise, informative answers about resume building, career advice, technology, and related topics."
+            }
+        except Exception as e:
+            logger.error(f"Error initializing OpenAI client: {str(e)}")
+            self.client = None
     
     async def get_response(self, user_query: str, conversation_history: List[dict] = None) -> str:
         """
