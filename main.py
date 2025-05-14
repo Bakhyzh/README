@@ -52,6 +52,33 @@ logger = logging.getLogger(__name__)
 # Create database tables if they don't exist
 Base.metadata.create_all(bind=engine)
 
+# Check if we're running on Render
+is_render = os.environ.get("RENDER", "").lower() == "true"
+
+# Create initial admin user
+def create_admin_user(db):
+    try:
+        admin = db.query(models.User).filter(models.User.username == "admin").first()
+        if not admin:
+            hashed_password = bcrypt.hashpw("admin123".encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+            admin_user = models.User(
+                fullname="Admin User",
+                email="admin@example.com",
+                username="admin",
+                password=hashed_password,
+                is_admin=True
+            )
+            db.add(admin_user)
+            db.commit()
+            logger.info("Admin user created successfully")
+    except Exception as e:
+        logger.error(f"Error creating admin user: {str(e)}")
+        db.rollback()
+
+# Initialize admin user
+with SessionLocal() as db:
+    create_admin_user(db)
+
 # Dependency to get the database session
 def get_db():
     db = SessionLocal()
@@ -106,64 +133,62 @@ async def get_current_active_user(current_user: models.User = Depends(get_curren
 # Route to check if the database is configured correctly
 @app.get("/check_db")
 async def check_db(db: Session = Depends(get_db)):
-    # Create admin user if it doesn't exist
-    admin = db.query(models.User).filter(models.User.username == "admin").first()
-    if not admin:
-        hashed_password = bcrypt.hashpw("admin123".encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-        admin_user = models.User(
-            fullname="Admin User",
-            email="admin@example.com",
-            username="admin",
-            password=hashed_password,
-            is_admin=True
-        )
-        db.add(admin_user)
-        db.commit()
-        logger.info("Admin user created")
-    
-    # Get all users
-    users = db.query(models.User).all()
-    user_list = []
-    for user in users:
-        user_list.append({
-            "id": user.id,
-            "fullname": user.fullname,
-            "email": user.email,
-            "username": user.username,
-            "created_at": str(user.created_at),
-            "is_admin": user.is_admin
-        })
-    
-    # HTML response similar to the PHP version
-    html_content = f"""
-    <h1>Database Status Check</h1>
-    <p style='color:green'>Successfully connected to MySQL!</p>
-    <p style='color:green'>Users table exists.</p>
-    
-    <h2>Users in the database:</h2>
-    <table border='1'>
-    <tr><th>ID</th><th>Name</th><th>Email</th><th>Username</th><th>Created At</th><th>Admin</th></tr>
-    """
-    
-    for user in user_list:
-        html_content += f"""
-        <tr>
-        <td>{user['id']}</td>
-        <td>{user['fullname']}</td>
-        <td>{user['email']}</td>
-        <td>{user['username']}</td>
-        <td>{user['created_at']}</td>
-        <td>{user['is_admin']}</td>
-        </tr>
+    try:
+        # Create admin user if it doesn't exist
+        create_admin_user(db)
+        
+        # Get all users
+        users = db.query(models.User).all()
+        user_list = []
+        for user in users:
+            user_list.append({
+                "id": user.id,
+                "fullname": user.fullname,
+                "email": user.email,
+                "username": user.username,
+                "created_at": str(user.created_at),
+                "is_admin": user.is_admin
+            })
+        
+        # HTML response
+        html_content = f"""
+        <h1>Database Status Check</h1>
+        <p style='color:green'>Successfully connected to database!</p>
+        <p style='color:green'>Users table exists.</p>
+        
+        <h2>Users in the database:</h2>
+        <table border='1'>
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Username</th><th>Created At</th><th>Admin</th></tr>
         """
-    
-    html_content += """
-    </table>
-    <p style='color:green'>Database check completed successfully!</p>
-    <p><a href='/register.html'>Go to registration page</a> | <a href='/login.html'>Go to login page</a></p>
-    """
-    
-    return HTMLResponse(content=html_content)
+        
+        for user in user_list:
+            html_content += f"""
+            <tr>
+            <td>{user['id']}</td>
+            <td>{user['fullname']}</td>
+            <td>{user['email']}</td>
+            <td>{user['username']}</td>
+            <td>{user['created_at']}</td>
+            <td>{user['is_admin']}</td>
+            </tr>
+            """
+        
+        html_content += """
+        </table>
+        <p style='color:green'>Database check completed successfully!</p>
+        <p><a href='/register.html'>Go to registration page</a> | <a href='/login.html'>Go to login page</a></p>
+        """
+        
+        return HTMLResponse(content=html_content)
+    except Exception as e:
+        logger.error(f"Database check error: {str(e)}")
+        return HTMLResponse(
+            content=f"""
+            <h1>Database Status Check</h1>
+            <p style='color:red'>Error connecting to database: {str(e)}</p>
+            """,
+            status_code=500
+        )
 
 # Login route
 @app.post("/token")
@@ -417,6 +442,21 @@ async def serve_file(file_path: str):
     
     # If file not found, return 404
     raise HTTPException(status_code=404, detail="File not found")
+
+# Health check endpoint for Render.com
+@app.get("/healthz")
+async def health_check():
+    try:
+        # Check database connection
+        with SessionLocal() as db:
+            db.execute("SELECT 1")
+        return {"status": "healthy", "message": "API is running"}
+    except Exception as e:
+        logger.error(f"Health check failed: {str(e)}")
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={"status": "unhealthy", "message": str(e)}
+        )
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True) 
