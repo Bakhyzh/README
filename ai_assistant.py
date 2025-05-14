@@ -17,7 +17,7 @@ class AIAssistant:
         if not api_key:
             logger.error("OpenAI API key not found in environment variables")
         
-        # Initialize OpenAI client
+        # Initialize OpenAI client - removed any proxy settings
         self.client = OpenAI(api_key=api_key)
         
         # Set default model (can be configured in .env)
