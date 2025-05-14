@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Collaboration Skills | Bakhyt Zharkynbek</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --accent: #4ecdc4;
+            --accent2: #ff6b6b;
+            --glass-bg: rgba(30,34,45,0.75);
+            --main-bg: #181c24;
+            --shadow: 0 8px 32px 0 rgba(31,38,135,0.17);
+        }
+        
+        /* Fix for white background during scrolling */
+        html {
+            background-color: #181c24;
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+        
+        body {
+            background: linear-gradient(120deg, #181c24 0%, #23272f 100%);
+            background-attachment: fixed; /* This ensures the gradient stays fixed while scrolling */
+            color: #fff;
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Add a pseudo-element as a fallback background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #181c24; /* Solid color fallback */
+            z-index: -2;
+        }
+        
+        .neon-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        .neon-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: float 8s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+        .neon1 { width: 400px; height: 400px; background: #4ecdc4; top: 10%; left: 5%; animation-delay: 0s;}
+        .neon2 { width: 300px; height: 300px; background: #ff6b6b; bottom: 10%; right: 8%; animation-delay: 2s;}
+        .neon3 { width: 200px; height: 200px; background: #ffe66d; top: 60%; left: 60%; opacity: 0.2; animation-delay: 4s;}
+        @keyframes float {
+            0% { transform: translateY(0) scale(1);}
+            100% { transform: translateY(-30px) scale(1.08);}
+        }
+        
+        /* Modern navbar styles */
+        nav {
+            background: rgba(30,34,45,0.9);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            padding: 0 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 70px;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            background: linear-gradient(45deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--accent);
+        }
+        
+        .nav-link.active {
+            background: var(--accent);
+            color: #181c24;
+        }
+        
+        .nav-link.active:hover {
+            background: var(--accent2);
+            color: #181c24;
+        }
+        
+        .nav-link.outlined {
+            border: 1.5px solid var(--accent);
+            color: var(--accent);
+        }
+        
+        .nav-link.outlined:hover {
+            background: var(--accent);
+            color: #181c24;
+        }
+        
+        .nav-link.filled {
+            background: var(--accent2);
+            color: #fff;
+        }
+        
+        .nav-link.filled:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255,107,107,0.3);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: #fff;
+            transition: all 0.3s;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 40px;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            background: linear-gradient(45deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 12px #23272f80;
+            animation: neonText 2s infinite alternate;
+        }
+        
+        .page-subtitle {
+            color: #e0f7fa;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        @keyframes neonText {
+            0% { text-shadow: 0 0 8px var(--accent), 0 2px 12px #23272f80;}
+            100% { text-shadow: 0 0 18px var(--accent2), 0 2px 12px #23272f80;}
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .skill-item {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(14px);
+            border: 1.5px solid rgba(255,255,255,0.10);
+            animation: fadeInUp 1s cubic-bezier(.23,1.01,.32,1) both;
+            animation-delay: calc(var(--i) * 0.1s);
+            will-change: transform, opacity;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(78, 205, 196, 0.3);
+        }
+        
+        .skill-header {
+            padding: 25px 20px;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.2), rgba(255, 107, 107, 0.2));
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .skill-icon {
+            color: var(--accent);
+            font-size: 2rem;
+            background: rgba(35, 39, 47, 0.8);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.2);
+        }
+        
+        .skill-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+        
+        .skill-level {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .skill-level-bar {
+            height: 8px;
+            background: rgba(35, 39, 47, 0.5);
+            border-radius: 4px;
+            overflow: hidden;
+            width: 100px;
+            margin-right: 10px;
+        }
+        
+        .skill-level-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+        }
+        
+        .skill-level-text {
+            font-size: 0.9rem;
+            color: #b2f7ef;
+        }
+        
+        .skill-body {
+            padding: 20px;
+        }
+        
+        .skill-description {
+            color: #e0f7fa;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .skill-details {
+            margin-top: 20px;
+        }
+        
+        .skill-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(35, 39, 47, 0.5);
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .skill-detail-item:hover {
+            background: rgba(35, 39, 47, 0.8);
+        }
+        
+        .skill-detail-icon {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        .back-button-container {
+            position: relative;
+            max-width: 1100px;
+            margin: 25px auto 0;
+            padding: 0 20px;
+            z-index: 5;
+        }
+        
+        .back-button-top {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 18px 10px 16px;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.15), rgba(255, 107, 107, 0.15));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .back-button-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .back-button-top i {
+            margin-right: 8px;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-button-top:hover {
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(78, 205, 196, 0.3);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .back-button-top:hover::before {
+            opacity: 0.9;
+        }
+        
+        .back-button-top:hover i {
+            transform: translateX(-3px);
+        }
+        
+        .back-button-top .arrow {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .back-button-top:hover .arrow {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .back-button-top .arrow i {
+            margin: 0;
+            font-size: 0.7rem;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(30,34,45,0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+                gap: 15px;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 9;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        .bottom-navigation {
+            display: flex;
+            justify-content: center;
+            margin: 60px 0 70px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .modern-back-button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            background: rgba(30,34,45,0.7);
+            padding: 12px 24px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-button-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-button-icon i {
+            color: #181c24;
+            font-size: 0.8rem;
+        }
+        
+        .modern-back-button:hover {
+            background: rgba(30,34,45,0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            border-color: var(--accent);
+        }
+        
+        .modern-back-button:hover .back-button-icon {
+            transform: translateX(-3px);
+        }
+        
+        @media (max-width: 600px) {
+            .modern-back-button {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+            
+            .back-button-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .back-button-icon i {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="neon-bg">
+        <div class="neon-circle neon1"></div>
+        <div class="neon-circle neon2"></div>
+        <div class="neon-circle neon3"></div>
+    </div>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">BZ Portfolio</a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#skills" class="nav-link active">Skills</a>
+                <a href="profile.html" class="nav-link outlined">Profile</a>
+                <div id="auth-buttons">
+                    <a href="login.html" class="nav-link filled">Sign In</a>
+                    <a href="register.html" class="nav-link filled" style="background: #4ecdc4;">Register</a>
+                </div>
+                <a href="#" id="logout-button" class="nav-link filled" style="display: none;">Sign Out</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Team Collaboration Skills</h1>
+            <p class="page-subtitle">My experience working effectively with teams and in various professional roles</p>
+        </div>
+        
+        <div class="skills-container">
+            <div class="skill-item" style="--i:1">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <div>
+                        <h3 class="skill-name">Project Management</h3>
+                        <div class="skill-level">
+                            <div class="skill-level-bar">
+                                <div class="skill-level-fill" style="width: 40%;"></div>
+                            </div>
+                            <span class="skill-level-text">Basic</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-body">
+                    <p class="skill-description">
+                        Experienced in coordinating team efforts and managing projects to successful completion.
+                    </p>
+                    <div class="skill-details">
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Agile methodology implementation</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Sprint planning and review</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Task prioritization and assignment</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Project timeline management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-item" style="--i:2">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div>
+                        <h3 class="skill-name">Communication</h3>
+                        <div class="skill-level">
+                            <div class="skill-level-bar">
+                                <div class="skill-level-fill" style="width: 45%;"></div>
+                            </div>
+                            <span class="skill-level-text">Basic</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-body">
+                    <p class="skill-description">
+                        Strong interpersonal and communication skills across different channels and contexts.
+                    </p>
+                    <div class="skill-details">
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Clear presentation of complex ideas</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Technical writing and documentation</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Active listening and feedback</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Cross-functional team communication</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-item" style="--i:3">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div>
+                        <h3 class="skill-name">Version Control</h3>
+                        <div class="skill-level">
+                            <div class="skill-level-bar">
+                                <div class="skill-level-fill" style="width: 40%;"></div>
+                            </div>
+                            <span class="skill-level-text">Basic</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-body">
+                    <p class="skill-description">
+                        Proficient in using Git and other version control systems for collaborative development.
+                    </p>
+                    <div class="skill-details">
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Git workflow (branching, merging)</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>GitHub/GitLab collaboration</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Code review processes</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Conflict resolution</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-item" style="--i:4">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div>
+                        <h3 class="skill-name">Task Management</h3>
+                        <div class="skill-level">
+                            <div class="skill-level-bar">
+                                <div class="skill-level-fill" style="width: 38%;"></div>
+                            </div>
+                            <span class="skill-level-text">Basic</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-body">
+                    <p class="skill-description">
+                        Experienced with project management tools and methodologies for efficient workflow.
+                    </p>
+                    <div class="skill-details">
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Jira and Trello proficiency</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Kanban and Scrum methodologies</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Time management and prioritization</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Deadline-oriented work approach</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-item" style="--i:5">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div>
+                        <h3 class="skill-name">Collaboration</h3>
+                        <div class="skill-level">
+                            <div class="skill-level-bar">
+                                <div class="skill-level-fill" style="width: 42%;"></div>
+                            </div>
+                            <span class="skill-level-text">Basic</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-body">
+                    <p class="skill-description">
+                        Working effectively with diverse teams and contributing to collective goals.
+                    </p>
+                    <div class="skill-details">
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Cross-functional team coordination</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Remote/distributed team experience</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Pair programming and code reviews</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Mentoring junior team members</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-item" style="--i:6">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div>
+                        <h3 class="skill-name">Problem Solving</h3>
+                        <div class="skill-level">
+                            <div class="skill-level-bar">
+                                <div class="skill-level-fill" style="width: 40%;"></div>
+                            </div>
+                            <span class="skill-level-text">Basic</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-body">
+                    <p class="skill-description">
+                        Analytical thinking and creative problem-solving in collaborative environments.
+                    </p>
+                    <div class="skill-details">
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Critical thinking and analysis</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Brainstorming and ideation</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Debugging and troubleshooting</span>
+                        </div>
+                        <div class="skill-detail-item">
+                            <i class="fas fa-check-circle skill-detail-icon"></i>
+                            <span>Decision-making in team contexts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bottom-navigation">
+            <a href="index.html#skills" class="modern-back-button">
+                <div class="back-button-icon">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <span>All Skills</span>
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            // Check authentication status
+            const token = localStorage.getItem('authToken');
+            
+            if (token) {
+                // User is logged in
+                $('#auth-buttons').hide();
+                $('#logout-button').show();
+            } else {
+                // User is logged out
+                $('#auth-buttons').show();
+                $('#logout-button').hide();
+            }
+            
+            // Add logout functionality
+            $('#logout-button').click(function(e) {
+                e.preventDefault();
+                localStorage.removeItem('authToken');
+                window.location.href = 'login.html';
+            });
+            
+            // Mobile menu toggle
+            $('#hamburger').click(function() {
+                $('#navLinks').toggleClass('active');
+            });
+        });
+    </script>
+</body>
+</html> 

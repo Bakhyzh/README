@@ -226,3 +226,193 @@
 2025-05-13 22:42:13 - Пользователь найден: id=1, is_admin=1
 2025-05-13 22:42:14 - Пароль верный
 2025-05-13 22:42:14 - Пользователь является администратором
+2025-05-14 07:15:54 - Начало отладки входа
+2025-05-14 07:15:54 - Метод запроса: POST
+2025-05-14 07:15:54 - Данные POST: Array
+(
+    [username] => bakhyzh
+    [password] => bakobako
+)
+
+2025-05-14 07:15:54 - Данные GET: Array
+(
+)
+
+2025-05-14 07:15:54 - Заголовки: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 249
+    [sec-ch-ua-platform] => "macOS"
+    [User-Agent] => Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+    [sec-ch-ua] => "Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundaryv4mJjhAboBRNXb8C
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/login.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7
+    [Cookie] => PHPSESSID=d5d46d8ac011218c653e66c971114d38
+)
+
+2025-05-14 07:15:54 - Получены данные: username=bakhyzh
+2025-05-14 07:15:54 - SQL запрос: SELECT * FROM users WHERE username = 'bakhyzh' OR email = 'bakhyzh'
+2025-05-14 07:15:54 - Пользователь найден: id=3, is_admin=0
+2025-05-14 07:15:54 - Пароль верный
+2025-05-14 07:15:54 - Пользователь не является администратором
+2025-05-14 07:16:42 - Начало отладки входа
+2025-05-14 07:16:42 - Метод запроса: POST
+2025-05-14 07:16:42 - Данные POST: Array
+(
+    [username] => bakhyzh
+    [password] => bakobako
+)
+
+2025-05-14 07:16:42 - Данные GET: Array
+(
+)
+
+2025-05-14 07:16:42 - Заголовки: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 249
+    [sec-ch-ua-platform] => "macOS"
+    [User-Agent] => Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+    [sec-ch-ua] => "Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundarySDl5SywwdlEiTzBF
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/login.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7
+    [Cookie] => PHPSESSID=d5d46d8ac011218c653e66c971114d38
+)
+
+2025-05-14 07:16:42 - Получены данные: username=bakhyzh
+2025-05-14 07:16:42 - SQL запрос: SELECT * FROM users WHERE username = 'bakhyzh' OR email = 'bakhyzh'
+2025-05-14 07:16:42 - Пользователь найден: id=3, is_admin=0
+2025-05-14 07:16:42 - Пароль верный
+2025-05-14 07:16:42 - Пользователь не является администратором
+2025-05-14 07:19:15 - Начало отладки входа
+2025-05-14 07:19:15 - Метод запроса: POST
+2025-05-14 07:19:15 - Данные POST: Array
+(
+    [username] => raha
+    [password] => 123456
+)
+
+2025-05-14 07:19:15 - Данные GET: Array
+(
+)
+
+2025-05-14 07:19:15 - Заголовки: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 244
+    [sec-ch-ua-platform] => "macOS"
+    [User-Agent] => Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+    [sec-ch-ua] => "Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundaryOFL3BeBpVeTIAmL9
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/login.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7
+    [Cookie] => PHPSESSID=d5d46d8ac011218c653e66c971114d38
+)
+
+2025-05-14 07:19:15 - Получены данные: username=raha
+2025-05-14 07:19:15 - SQL запрос: SELECT * FROM users WHERE username = 'raha' OR email = 'raha'
+2025-05-14 07:19:15 - Пользователь найден: id=4, is_admin=0
+2025-05-14 07:19:15 - Пароль верный
+2025-05-14 07:19:15 - Пользователь не является администратором
+2025-05-14 07:19:26 - Начало отладки входа
+2025-05-14 07:19:26 - Метод запроса: POST
+2025-05-14 07:19:26 - Данные POST: Array
+(
+    [username] => admin
+    [password] => admin123
+)
+
+2025-05-14 07:19:26 - Данные GET: Array
+(
+)
+
+2025-05-14 07:19:26 - Заголовки: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 247
+    [sec-ch-ua-platform] => "macOS"
+    [User-Agent] => Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+    [sec-ch-ua] => "Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundaryiyd0oESZJqYKztpA
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/login.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7
+    [Cookie] => PHPSESSID=d5d46d8ac011218c653e66c971114d38
+)
+
+2025-05-14 07:19:26 - Получены данные: username=admin
+2025-05-14 07:19:26 - SQL запрос: SELECT * FROM users WHERE username = 'admin' OR email = 'admin'
+2025-05-14 07:19:26 - Пользователь найден: id=1, is_admin=1
+2025-05-14 07:19:27 - Пароль верный
+2025-05-14 07:19:27 - Пользователь является администратором
+2025-05-14 08:27:30 - Начало отладки входа
+2025-05-14 08:27:30 - Метод запроса: POST
+2025-05-14 08:27:30 - Данные POST: Array
+(
+    [username] => admin
+    [password] => admin123
+)
+
+2025-05-14 08:27:30 - Данные GET: Array
+(
+)
+
+2025-05-14 08:27:30 - Заголовки: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 247
+    [sec-ch-ua-platform] => "macOS"
+    [User-Agent] => Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+    [sec-ch-ua] => "Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundaryAEkEitK2j2E8YsDa
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/login.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7
+    [Cookie] => PHPSESSID=d5d46d8ac011218c653e66c971114d38
+)
+
+2025-05-14 08:27:30 - Получены данные: username=admin
+2025-05-14 08:27:30 - SQL запрос: SELECT * FROM users WHERE username = 'admin' OR email = 'admin'
+2025-05-14 08:27:30 - Пользователь найден: id=1, is_admin=1
+2025-05-14 08:27:30 - Пароль верный
+2025-05-14 08:27:30 - Пользователь является администратором

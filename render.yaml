@@ -1,0 +1,35 @@
+services:
+  # A FastAPI web service
+  - type: web
+    name: bz-portfolio
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: bz-portfolio-db
+          property: host
+      - key: DB_USER
+        fromDatabase:
+          name: bz-portfolio-db
+          property: user
+      - key: DB_NAME
+        fromDatabase:
+          name: bz-portfolio-db
+          property: database
+      - key: DB_PASS
+        fromDatabase:
+          name: bz-portfolio-db
+          property: password
+      - key: SECRET_KEY
+        generateValue: true # Auto-generate a secure value
+      - key: RENDER
+        value: "true"
+
+databases:
+  # A PostgreSQL database (Render provides PostgreSQL for free tier)
+  - name: bz-portfolio-db
+    databaseName: portfolio_db
+    plan: free 

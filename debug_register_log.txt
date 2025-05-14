@@ -81,3 +81,45 @@
 2025-05-13 22:41:49 - SQL запрос: INSERT INTO users (fullname, email, username, password) 
                         VALUES ('Bakhyt Zharkynbek', 'zharqynbekov.b@sdu.edu.kz', 'bakhyzh', '$2y$12$OXmXjEO3UtDh/QFP530EiuizQXQq/rSCOfcBWo6oPjIKdzWHZjPS6')
 2025-05-13 22:41:49 - Регистрация успешна
+2025-05-14 07:19:00 - Начало отладки
+2025-05-14 07:19:00 - Метод запроса: POST
+2025-05-14 07:19:00 - Данные POST: Array
+(
+    [fullname] => Rakhat
+    [email] => wefr@werft.com
+    [username] => Raha
+    [password] => 123456
+    [confirmPassword] => 123456
+)
+
+2025-05-14 07:19:00 - Данные GET: Array
+(
+)
+
+2025-05-14 07:19:00 - Заголовки: Array
+(
+    [Host] => localhost:8000
+    [Connection] => keep-alive
+    [Content-Length] => 559
+    [sec-ch-ua-platform] => "macOS"
+    [User-Agent] => Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+    [sec-ch-ua] => "Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"
+    [Content-Type] => multipart/form-data; boundary=----WebKitFormBoundaryzqzaAftq8CAD4qFz
+    [sec-ch-ua-mobile] => ?0
+    [Accept] => */*
+    [Origin] => http://localhost:8000
+    [Sec-Fetch-Site] => same-origin
+    [Sec-Fetch-Mode] => cors
+    [Sec-Fetch-Dest] => empty
+    [Referer] => http://localhost:8000/register.html
+    [Accept-Encoding] => gzip, deflate, br, zstd
+    [Accept-Language] => ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7
+    [Cookie] => PHPSESSID=d5d46d8ac011218c653e66c971114d38
+)
+
+2025-05-14 07:19:00 - Получены данные: fullname=Rakhat, email=wefr@werft.com, username=Raha
+2025-05-14 07:19:00 - Нет ошибок валидации, продолжаем регистрацию
+2025-05-14 07:19:00 - Нет ошибок, продолжаем регистрацию
+2025-05-14 07:19:01 - SQL запрос: INSERT INTO users (fullname, email, username, password) 
+                        VALUES ('Rakhat', 'wefr@werft.com', 'Raha', '$2y$12$7b9f8eAJz9EIXUUbytwKAexIMATD8.4GqaXI9FOWP9/fRejQ24jvi')
+2025-05-14 07:19:01 - Регистрация успешна

@@ -50,3 +50,74 @@
 2025-05-13 22:42:19 - Успешное подключение к базе данных
 2025-05-13 22:42:21 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
 2025-05-13 22:42:21 - Успешное подключение к базе данных
+2025-05-13 22:52:47 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-13 22:52:48 - Успешное подключение к базе данных
+2025-05-13 23:03:53 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-13 23:03:53 - Успешное подключение к базе данных
+2025-05-13 23:17:59 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-13 23:17:59 - Успешное подключение к базе данных
+2025-05-14 07:15:54 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-14 07:15:54 - Успешное подключение к базе данных
+2025-05-14 07:16:42 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-14 07:16:42 - Успешное подключение к базе данных
+2025-05-14 07:19:00 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-14 07:19:00 - Успешное подключение к базе данных
+2025-05-14 07:19:15 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-14 07:19:15 - Успешное подключение к базе данных
+2025-05-14 07:19:26 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-14 07:19:26 - Успешное подключение к базе данных
+2025-05-14 07:19:27 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-14 07:19:27 - Успешное подключение к базе данных
+2025-05-14 07:19:55 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-14 07:19:55 - Успешное подключение к базе данных
+2025-05-14 07:19:56 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-14 07:19:56 - Успешное подключение к базе данных
+2025-05-14 07:24:23 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-14 07:24:23 - Успешное подключение к базе данных
+2025-05-14 08:27:30 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-14 08:27:30 - Успешное подключение к базе данных
+2025-05-14 08:27:30 - Попытка подключения к базе данных: host=localhost, user=root, db=portfolio_db
+2025-05-14 08:27:30 - Успешное подключение к базе данных
+2025-05-14 13:51:38,006 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 13:55:04,376 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 13:55:17,196 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 13:55:32,452 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 13:55:47,882 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 13:57:04,404 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 13:57:23,797 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 13:59:37,289 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 14:00:06,494 - INFO - Login attempt: username=admin
+2025-05-14 14:00:06,784 - INFO - User admin authenticated successfully
+2025-05-14 14:00:06,785 - INFO - User admin is an admin
+2025-05-14 14:00:07,712 - INFO - Login attempt: username=admin
+2025-05-14 14:00:07,981 - INFO - User admin authenticated successfully
+2025-05-14 14:00:07,981 - INFO - User admin is an admin
+2025-05-14 14:02:56,336 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 14:04:06,349 - INFO - Login attempt: username=admin
+2025-05-14 14:04:06,600 - INFO - User admin authenticated successfully
+2025-05-14 14:04:06,600 - INFO - User admin is an admin
+2025-05-14 14:05:16,970 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 14:05:35,874 - INFO - Login attempt: username=admin
+2025-05-14 14:05:36,133 - INFO - User admin authenticated successfully
+2025-05-14 14:05:36,134 - INFO - User admin is an admin
+2025-05-14 14:05:37,099 - INFO - Login attempt: username=admin
+2025-05-14 14:05:37,366 - INFO - User admin authenticated successfully
+2025-05-14 14:05:37,366 - INFO - User admin is an admin
+2025-05-14 14:05:51,436 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 14:05:59,597 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 14:13:21,535 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 14:13:33,721 - INFO - Login attempt: username=admin
+2025-05-14 14:13:33,988 - INFO - User admin authenticated successfully
+2025-05-14 14:13:33,988 - INFO - User admin is an admin
+2025-05-14 14:14:15,001 - INFO - Login attempt: username=admin
+2025-05-14 14:14:15,288 - INFO - User admin authenticated successfully
+2025-05-14 14:14:15,288 - INFO - User admin is an admin
+2025-05-14 14:20:33,715 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 14:20:34,806 - INFO - Database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 14:20:41,296 - INFO - Login attempt: username=admin
+2025-05-14 14:20:41,580 - INFO - User admin authenticated successfully
+2025-05-14 14:20:41,580 - INFO - User admin is an admin
+2025-05-14 14:20:45,689 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 14:21:11,690 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 14:21:31,287 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
+2025-05-14 14:21:32,600 - INFO - MySQL database connection successful: host=localhost, user=root, db=portfolio_db
